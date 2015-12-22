@@ -32,7 +32,7 @@
 Name:              nginx-stable-pagespeed
 Epoch:             1
 Version:           %{ngx_version}
-Release:           7%{?dist}
+Release:           8%{?dist}
 
 Summary:           A high performance web server and reverse proxy server
 Group:             System Environment/Daemons
@@ -70,6 +70,10 @@ BuildRequires:     pcre-devel
 BuildRequires:     perl-devel
 BuildRequires:     perl(ExtUtils::Embed)
 BuildRequires:     zlib-devel
+%if 0%{?rhel} == 6
+BuildRequires:     devtoolset-2-gcc-c++
+BuildRequires:     devtoolset-2-binutils
+%endif
 
 Requires:          nginx-stable-pagespeed-filesystem = %{epoch}:%{version}-%{release}
 Requires:          GeoIP
@@ -129,6 +133,9 @@ mv psol ngx_pagespeed-release-%{nps_version}-beta/
 # to error out.  This is is also the reason for the DESTDIR environment
 # variable.
 export DESTDIR=%{buildroot}
+%if 0%{?rhel} == 6
+export PS_NGX_EXTRA_FLAGS="--with-cc=/opt/rh/devtoolset-2/root/usr/bin/gcc"
+%endif
 ./configure \
     --prefix=%{nginx_datadir} \
     --sbin-path=%{_sbindir}/nginx \
@@ -178,7 +185,7 @@ export DESTDIR=%{buildroot}
     --with-google_perftools_module \
 %endif
     --with-debug \
-    --add-module=ngx_pagespeed-release-%{nps_version}-beta \
+    --add-module=ngx_pagespeed-release-%{nps_version}-beta ${PS_NGX_EXTRA_FLAGS} \
     --with-cc-opt="%{optflags} $(pcre-config --cflags) -D_GLIBCXX_USE_CXX11_ABI=0" \
     --with-ld-opt="$RPM_LD_FLAGS -Wl,-E" # so the perl module finds its symbols
 
@@ -333,6 +340,9 @@ fi
 
 
 %changelog
+* Mon Dec 21 2015 Kyle Lexmond <fedora@kyl191.net> - 1:1.8.0-8
+- Fix RHEL/CentOS 6 builds
+
 * Mon Dec 21 2015 Kyle Lexmond <fedora@kyl191.net> - 1:1.8.0-7
 - Update to upstream ngx_pagespeed 1.10.33.2
 
