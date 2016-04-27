@@ -161,7 +161,7 @@ export PS_NGX_EXTRA_FLAGS="--with-cc=/opt/rh/devtoolset-2/root/usr/bin/gcc"
 %endif
     --with-ipv6 \
     --with-http_ssl_module \
-    --with-http_spdy_module \
+    --with-http_v2_module \
     --with-http_realip_module \
     --with-http_addition_module \
     --with-http_xslt_module \
@@ -342,6 +342,7 @@ fi
 %changelog
 * Tue Apr 26 2016 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.0-1
 - Update to upstream nginx 1.10.0
+- Build with HTTP/2 instead of SPDY
 
 * Fri Apr 8 2016 Kyle Lexmond <fedora@kyl191.net> - 1:1.8.1-5
 - Update to upstream ngx-pagespeed 1.11.33.0
