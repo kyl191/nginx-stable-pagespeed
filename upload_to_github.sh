@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x
 source srpm
 git tag ${CIRCLE_PROJECT_REPONAME}-${srpm_version}
 git push --tags
