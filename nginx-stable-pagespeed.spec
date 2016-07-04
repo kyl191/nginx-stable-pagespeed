@@ -10,7 +10,6 @@
 %global  pagespeed_cachedir  %{_localstatedir}/cache/ngx_pagespeed
 
 
-%define ngx_version 1.10.0
 %define nps_version 1.11.33.0
 
 # gperftools exist only on selected arches
@@ -31,7 +30,7 @@
 
 Name:              nginx-stable-pagespeed
 Epoch:             1
-Version:           %{ngx_version}
+Version:           1.10.1
 Release:           1%{?dist}
 
 Summary:           A high performance web server and reverse proxy server
@@ -41,8 +40,8 @@ Group:             System Environment/Daemons
 License:           BSD
 URL:               http://nginx.org/
 
-Source0:           http://nginx.org/download/nginx-%{ngx_version}.tar.gz
-Source1:           http://nginx.org/download/nginx-%{ngx_version}.tar.gz.asc
+Source0:           http://nginx.org/download/nginx-%{version}.tar.gz
+Source1:           http://nginx.org/download/nginx-%{version}.tar.gz.asc
 Source2:           https://github.com/pagespeed/ngx_pagespeed/archive/release-%{nps_version}-beta.zip
 Source3:           https://dl.google.com/dl/page-speed/psol/%{nps_version}.tar.gz
 Source10:          nginx.service
@@ -120,8 +119,8 @@ directories. This installs the mainline version of nginx.
 
 %prep
 %setup -n nginx-stable-pagespeed -c -q
-mv nginx-%{ngx_version}/* .
-rmdir nginx-%{ngx_version}
+mv nginx-%{version}/* .
+rmdir nginx-%{version}
 %setup -n nginx-stable-pagespeed -T -D -a 2 -q
 %setup -n nginx-stable-pagespeed -T -D -a 3 -q
 mv psol ngx_pagespeed-release-%{nps_version}-beta/
@@ -340,6 +339,9 @@ fi
 
 
 %changelog
+* Mon Jul 04 2016 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.1-1
+- Update to upstream nginx 1.10.1
+
 * Tue Apr 26 2016 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.0-1
 - Update to upstream nginx 1.10.0
 - Build with HTTP/2 instead of SPDY
