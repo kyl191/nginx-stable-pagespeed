@@ -10,7 +10,7 @@
 %global  pagespeed_cachedir  %{_localstatedir}/cache/ngx_pagespeed
 
 
-%define nps_version 1.11.33.0
+%define nps_version 1.11.33.2
 
 # gperftools exist only on selected arches
 %ifarch %{ix86} x86_64 ppc ppc64 %{arm}
@@ -31,7 +31,7 @@
 Name:              nginx-stable-pagespeed
 Epoch:             1
 Version:           1.10.1
-Release:           2%{?dist}
+Release:           3%{?dist}
 
 Summary:           A high performance web server and reverse proxy server
 Group:             System Environment/Daemons
@@ -339,6 +339,9 @@ fi
 
 
 %changelog
+* Mon Jul 04 2016 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.1-3
+- Update to latest ngx_pagespeed
+
 * Mon Jul 04 2016 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.1-2
 - Fix CircleCI tagging issues
 
