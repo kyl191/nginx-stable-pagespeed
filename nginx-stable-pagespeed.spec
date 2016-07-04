@@ -31,7 +31,7 @@
 Name:              nginx-stable-pagespeed
 Epoch:             1
 Version:           1.10.1
-Release:           4%{?dist}
+Release:           5%{?dist}
 
 Summary:           A high performance web server and reverse proxy server
 Group:             System Environment/Daemons
@@ -339,6 +339,9 @@ fi
 
 
 %changelog
+* Mon Jul 04 2016 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.1-5
+- Add a sleep to fix Github tagging
+
 * Mon Jul 04 2016 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.1-4
 - Use new github release tool
 
