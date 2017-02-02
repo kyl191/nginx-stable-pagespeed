@@ -31,7 +31,7 @@
 Name:              nginx-stable-pagespeed
 Epoch:             1
 Version:           1.10.3
-Release:           1%{?dist}
+Release:           2%{?dist}
 
 Summary:           A high performance web server and reverse proxy server
 Group:             System Environment/Daemons
@@ -123,8 +123,12 @@ directories. This installs the mainline version of nginx.
 mv nginx-%{version}/* .
 rmdir nginx-%{version}
 %setup -n nginx-stable-pagespeed -T -D -a 2 -q
+%if "%{_arch}" == "x86_64"
 %setup -n nginx-stable-pagespeed -T -D -a 3 -q
-mv psol ngx_pagespeed-release-%{nps_version}-beta/
+%else
+%setup -n nginx-stable-pagespeed -T -D -a 4 -q
+%endif
+mv psol ngx_pagespeed-%{nps_version}-beta/
 
 
 %build
@@ -340,6 +344,9 @@ fi
 
 
 %changelog
+* Thu Feb 02 2017 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.3-2
+- Fix build for new ngx_pagespeed version
+
 * Thu Feb 02 2017 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.3-1
 - Update to upstream nginx 1.10.3
 - Update to upstream ngx-pagespeed 1.12.34.2
