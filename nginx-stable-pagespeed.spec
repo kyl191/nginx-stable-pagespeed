@@ -10,8 +10,8 @@
 %global  pagespeed_cachedir  %{_localstatedir}/cache/ngx_pagespeed
 
 
-%define ngx_version 1.10.0
-%define nps_version 1.11.33.0
+%define ngx_version 1.10.3
+%define nps_version 1.12.34.2
 
 # gperftools exist only on selected arches
 %ifarch %{ix86} x86_64 ppc ppc64 %{arm}
@@ -340,6 +340,10 @@ fi
 
 
 %changelog
+* Thu Feb 02 2017 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.3-1
+- Update to upstream nginx 1.10.3
+- Update to upstream ngx-pagespeed 1.12.34.2
+
 * Tue Apr 26 2016 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.0-1
 - Update to upstream nginx 1.10.0
 - Build with HTTP/2 instead of SPDY
