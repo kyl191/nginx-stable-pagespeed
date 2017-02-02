@@ -31,7 +31,7 @@
 Name:              nginx-stable-pagespeed
 Epoch:             1
 Version:           1.10.3
-Release:           2%{?dist}
+Release:           3%{?dist}
 
 Summary:           A high performance web server and reverse proxy server
 Group:             System Environment/Daemons
@@ -189,7 +189,7 @@ export PS_NGX_EXTRA_FLAGS="--with-cc=/opt/rh/devtoolset-2/root/usr/bin/gcc"
     --with-google_perftools_module \
 %endif
     --with-debug \
-    --add-module=ngx_pagespeed-release-%{nps_version}-beta ${PS_NGX_EXTRA_FLAGS} \
+    --add-module=ngx_pagespeed-%{nps_version}-beta ${PS_NGX_EXTRA_FLAGS} \
     --with-cc-opt="%{optflags} $(pcre-config --cflags) -D_GLIBCXX_USE_CXX11_ABI=0" \
     --with-ld-opt="$RPM_LD_FLAGS -Wl,-E" # so the perl module finds its symbols
 
@@ -344,6 +344,9 @@ fi
 
 
 %changelog
+* Thu Feb 02 2017 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.3-3
+- Fix build for new ngx_pagespeed version, part 2
+
 * Thu Feb 02 2017 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.3-2
 - Fix build for new ngx_pagespeed version
 
