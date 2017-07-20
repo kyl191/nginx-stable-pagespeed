@@ -30,8 +30,8 @@
 
 Name:              nginx-stable-pagespeed
 Epoch:             1
-Version:           1.10.3
-Release:           3%{?dist}
+Version:           1.12.1
+Release:           1%{?dist}
 
 Summary:           A high performance web server and reverse proxy server
 Group:             System Environment/Daemons
@@ -344,6 +344,9 @@ fi
 
 
 %changelog
+* Thu Jul 20 2017 Kyle Lexmond <fedora@kyl191.net> - 1:1.12.1-1
+- Update to upstream nginx 1.12.1
+
 * Thu Feb 02 2017 Kyle Lexmond <fedora@kyl191.net> - 1:1.10.3-3
 - Fix build for new ngx_pagespeed version, part 2
 
